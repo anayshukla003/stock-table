@@ -52,7 +52,7 @@ main {
   width: 60px;
   height: 60px;
   border: 6px solid #ffffff;
-  border-top: 6px solid #00bcd4; /* Teal accent */
+  border-top: 6px solid #00bcd4; 
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -61,7 +61,6 @@ main {
   to { transform: rotate(360deg); }
 }
 
-/* Fade-in animation */
 .fade-in {
   animation: fadeIn 0.6s ease-in forwards;
 }
@@ -71,7 +70,6 @@ main {
   to { opacity: 1; }
 }
 
-/* Tabulator Custom Theme */
 .tabulator {
   border: none;
   box-shadow: 0 2px 10px rgba(85, 128, 154, 0.08);
@@ -80,19 +78,9 @@ main {
  
 }
 
-/* .tabulator .tabulator-header {
-  background: #0b3d66ff;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 14px;
-} */
-/* 
-.tabulator .tabulator-row {
-  transition: background-color 0.3s ease;
-} */
 
 .tabulator .tabulator-row:hover {
-  background-color: #c1e3f3ff; /* Light blue hover */
+  background-color: #c1e3f3ff;
 }
 
 .tabulator-cell {
@@ -107,9 +95,9 @@ main {
 }
 
 .tabulator-cell.positive {
-  color: #2e7d32; /* Green for gains */
+  color: #2e7d32;
 }
 
 .tabulator-cell.negative {
-  color: #c62828; /* Red for losses */
+  color: #c62828; 
 }
