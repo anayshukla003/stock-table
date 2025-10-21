@@ -1,53 +1,83 @@
+
 window.addEventListener("load", () => {
-  // Simulate data loading delay
+  // Create skeleton loader dynamically
+  const skeletonLoader = document.createElement("div");
+  skeletonLoader.id = "skeleton-loader";
+  skeletonLoader.className = "skeleton-loader";
+  skeletonLoader.style.display = "none";
+
+  // Create 5 skeleton rows, each with 7 divs
+  for (let i = 0; i < 5; i++) {
+    const skeletonRow = document.createElement("div");
+    skeletonRow.className = "skeleton-row";
+    for (let j = 0; j < 7; j++) {
+      const placeholder = document.createElement("div");
+      skeletonRow.appendChild(placeholder);
+    }
+    skeletonLoader.appendChild(skeletonRow);
+  }
+
+  // Append skeleton loader to main
+  document.querySelector("main").appendChild(skeletonLoader);
+
   setTimeout(() => {
-    const loader = document.getElementById("page-loader");
-    loader.style.opacity = "0";
-    setTimeout(() => loader.style.display = "none", 500);
+    document.getElementById("page-loader").style.display = "none";
+    document.getElementById("skeleton-loader").style.display = "block";
+  }, 1000);
 
-    // Mock stock data
-    const stockData = [
-      { symbol: "SBIN", name: "State Bank of India", ltp: 735.25, change: 5.30, percentChange: 0.73, dayHigh: 742.00, dayLow: 728.10 },
-      { symbol: "RELIANCE", name: "Reliance Industries Ltd", ltp: 2538.40, change: -12.60, percentChange: -0.49, dayHigh: 2562.75, dayLow: 2521.30 },
-      { symbol: "TCS", name: "Tata Consultancy Services Ltd", ltp: 3872.10, change: 28.90, percentChange: 0.75, dayHigh: 3890.00, dayLow: 3835.50 },
-      { symbol: "INFY", name: "Infosys Ltd", ltp: 1534.80, change: -6.10, percentChange: -0.40, dayHigh: 1552.20, dayLow: 1528.00 },
-      { symbol: "HDFC", name: "HDFC Bank Ltd", ltp: 1652.55, change: 9.75, percentChange: 0.59, dayHigh: 1665.00, dayLow: 1641.00 },
-    ];
+  setTimeout(() => {
+    document.getElementById("skeleton-loader").style.display = "none";
+    document.getElementById("stock-table").style.display = "block";
 
-    // Show table
-    const tableEl = document.getElementById("stock-table");
-    tableEl.style.display = "block";
+   
+   fetch("stocks.json")
+      .then(response => response.json())
+      .then(stockData => {
 
-    // Initialize Tabulator
-    const table = new Tabulator("#stock-table", {
+    new Tabulator("#stock-table", {
       data: stockData,
       layout: "fitColumns",
-      responsiveLayout: "collapse",
+      responsiveLayout: "hide",
       pagination: "local",
       paginationSize: 5,
-      paginationCounter: "rows",
-      movableColumns: true,
-      resizableColumns: true,
-      placeholder: "No data available",
-      headerHozAlign: "center",
-      height: "auto",
-
       columns: [
-        { title: "Symbol", field: "symbol", headerFilter: "input", width: 120, hozAlign: "center", headerSort: true },
-        { title: "Company", field: "name", headerFilter: "input", minWidth: 220, headerSort: true },
-        { title: "LTP (₹)", field: "ltp", hozAlign: "right", formatter: "money", formatterParams: { symbol: "₹", precision: 2 } },
+        {
+          title: "Symbol",
+          field: "symbol",
+          headerFilter: "input",
+          width: 100,
+          headerSort: true,
+          sorter: "string"
+        },
+        {
+          title: "Company",
+          field: "name",
+          headerFilter: "input",
+          minWidth: 200,
+          headerSort: true,
+          sorter: "string"
+        },
+        {
+          title: "LTP ₹",
+          field: "ltp",
+          hozAlign: "right",
+          formatter: "money",
+          formatterParams: { symbol: "₹", precision: 2 },
+          headerSort: true,
+          sorter: "number"
+        },
         {
           title: "Change",
           field: "change",
           hozAlign: "right",
           formatter: (cell) => {
             const value = cell.getValue();
-            const isPositive = value >= 0;
-            const icon = isPositive ? "▲" : "▼";
-            const colorClass = isPositive ? "positive" : "negative";
-            cell.getElement().classList.add(colorClass);
-            return `<span>${icon} ${value.toFixed(2)}</span>`;
+            const cls = value >= 0 ? "positive" : "negative";
+            cell.getElement().classList.add(cls);
+            return value.toFixed(2);
           },
+          headerSort: true,
+          sorter: "number"
         },
         {
           title: "% Change",
@@ -55,24 +85,36 @@ window.addEventListener("load", () => {
           hozAlign: "right",
           formatter: (cell) => {
             const value = cell.getValue();
-            const isPositive = value >= 0;
-            const colorClass = isPositive ? "positive" : "negative";
-            cell.getElement().classList.add(colorClass);
-            return `<span>${value.toFixed(2)}%</span>`;
+            const cls = value >= 0 ? "positive" : "negative";
+            cell.getElement().classList.add(cls);
+            return `${value.toFixed(2)}%`;
           },
+          headerSort: true,
+          sorter: "number"
         },
-        { title: "Day High", field: "dayHigh", hozAlign: "right" },
-        { title: "Day Low", field: "dayLow", hozAlign: "right" },
+        {
+          title: "Day High",
+          field: "dayHigh",
+          hozAlign: "right",
+          headerSort: true,
+          sorter: "number"
+        },
+        {
+          title: "Day Low",
+          field: "dayLow",
+          hozAlign: "right",
+          headerSort: true,
+          sorter: "number"
+        }
       ],
-
-      rowFormatter: (row) => {
-        // Add a subtle hover glow effect
-        row.getElement().style.transition = "background-color 0.2s ease";
+      selectable: true,
+      rowSelected: function(row) {
+        console.log("Row selected:", row.getData());
       },
+      rowDeselected: function(row) {
+        console.log("Row deselected:", row.getData());
+      }
     });
-
-    // Smooth fade-in animation for table
-    tableEl.classList.add("fade-in");
-
-  }, 1800); // shorter delay for faster UX
+    });
+  }, 3000); 
 });

@@ -1,187 +1,297 @@
-/* ------------------------------
-   GLOBAL STYLES
------------------------------- */
-:root {
-  --primary-bg: #0b1f3a;
-  --header-gradient: linear-gradient(90deg, #0f3a6a, #205196);
-  --card-bg: #132b4f;
-  --text-main: #f3f5f7;
-  --text-subtle: #cbd5e1;
-  --accent: #00bcd4;
-  --green: #4ade80;
-  --red: #f87171;
-}
-
+/* Global Styles */
 body {
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--primary-bg);
-  color: var(--text-main);
-  margin: 0;
-  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #4a90e2;
+  
+  color: #9cc5eeff;
   line-height: 1.6;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ------------------------------
-   HEADER
------------------------------- */
-.app-header {
-  background: var(--header-gradient);
+header {
   text-align: center;
-  padding: 2rem 1rem 1.5rem;
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  padding: 30px 20px;
+  background: #4a90e2;
+  color: white;
+  margin-bottom: 30px;
 }
 
-.app-header .logo {
-  font-size: 2.4rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.3rem;
-}
-
-.app-header .subtitle {
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: var(--text-subtle);
+header h1 {
   margin: 0;
+  font-size: 2.8em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* ------------------------------
-   MAIN CONTENT
------------------------------- */
-.main-section {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+header p {
+  margin: 10px 0 0;
+  font-size: 1.1em;
+  opacity: 0.9;
+  font-weight: 300;
 }
 
-/* ------------------------------
-   PAGE LOADER
------------------------------- */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+
+/* Fullscreen Loader */
 .page-loader {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background-color: var(--primary-bg);
+  align-items: center;
   z-index: 9999;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .spinner {
   width: 60px;
   height: 60px;
-  border: 5px solid rgba(255,255,255,0.15);
-  border-top: 5px solid var(--accent);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #ffffff;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+  animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  margin-bottom: 20px;
 }
 
 .page-loader p {
-  color: var(--text-subtle);
-  font-size: 1rem;
-  letter-spacing: 0.3px;
+  color: white;
+  font-size: 1.1em;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* ------------------------------
-   TABLE STYLING (CUSTOM THEME)
------------------------------- */
+/* Skeleton Loader */
+.skeleton-loader {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.skeleton-row {
+  display: flex;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-row div {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.skeleton-row div:nth-child(n) { width: 80px; height: 20px; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modern Tabulator Theme */
 .tabulator {
-  background-color: var(--card-bg) !important;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  background:#4a90e2;
+  border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
 }
 
-.tabulator-header {
-  background: #1e3a64 !important;
-  color: #e2e8f0 !important;
+.tabulator .tabulator-header {
+  background: #4a90e2
+  color: #ffffff;
   font-weight: 600;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-}
-
-.tabulator-col-content {
-  padding: 12px 10px !important;
   font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #34495e;
 }
 
-.tabulator-row {
-  background-color: #16325b !important;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  transition: background-color 0.25s ease;
+.tabulator .tabulator-header .tabulator-col {
+  border-right: 1px solid rgba(255,255,255,0.1);
+  padding: 16px 12px;
+  transition: background-color 0.3s ease;
 }
 
-.tabulator-row:hover {
-  background-color: #1f4478 !important;
+.tabulator .tabulator-header .tabulator-col:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.tabulator .tabulator-header .tabulator-col:last-child {
+  border-right: none;
+}
+
+.tabulator .tabulator-row {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.tabulator .tabulator-row:hover {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.tabulator .tabulator-row.tabulator-selected {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-left: 4px solid #2196f3;
 }
 
 .tabulator-cell {
   font-size: 14px;
-  padding: 10px;
-  color: #f1f5f9 !important;
-  border-right: none !important;
+  padding: 14px 12px;
+  color: #2c3e50;
+  border-right: 1px solid #f1f3f4;
+  font-weight: 500;
 }
 
-.tabulator-cell[data-field="price"] {
+.tabulator-cell:last-child {
+  border-right: none;
+}
+
+.tabulator-cell[data-field="symbol"] {
+  font-weight: 700;
+  color: #1976d2;
+}
+
+.tabulator-cell[data-field="name"] {
   font-weight: 600;
+  color: #424242;
+}
+
+.tabulator-cell[data-field="ltp"] {
+  font-weight: 700;
+  font-size: 15px;
+  color: #2e7d32;
 }
 
 .tabulator-cell[data-field="change"],
 .tabulator-cell[data-field="percentChange"] {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 13px;
+  position: relative;
 }
 
 .tabulator-cell.positive {
-  color: var(--green) !important;
+  color: #2e7d32;
+}
+
+.tabulator-cell.positive::before {
+  content: "▲";
+  margin-right: 4px;
+  font-size: 12px;
 }
 
 .tabulator-cell.negative {
-  color: var(--red) !important;
+  color: #d32f2f;
 }
 
-/* Zebra stripes for better readability */
-.tabulator-row:nth-child(even) {
-  background-color: #1a3764 !important;
+.tabulator-cell.negative::before {
+  content: "▼";
+  margin-right: 4px;
+  font-size: 12px;
 }
 
-/* ------------------------------
-   ANIMATIONS
------------------------------- */
-.fade-in {
-  animation: fadeIn 0.6s ease-in forwards;
+.tabulator-cell[data-field="dayHigh"],
+.tabulator-cell[data-field="dayLow"] {
+  color: #616161;
+  font-weight: 500;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Pagination */
+.tabulator .tabulator-footer {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 12px;
 }
 
-/* ------------------------------
-   RESPONSIVE DESIGN
------------------------------- */
+.tabulator .tabulator-footer .tabulator-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabulator .tabulator-page {
+  margin: 0 4px;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  background: white;
+  color: #495057;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabulator .tabulator-page.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.tabulator .tabulator-page:hover:not(.active) {
+  background: #e9ecef;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .app-header .logo {
-    font-size: 2rem;
+  header h1 {
+    font-size: 2.2em;
   }
 
-  .main-section {
-    padding: 0 0.5rem;
+  main {
+    padding: 0 10px;
   }
 
   .tabulator-cell {
-    font-size: 13px;
-    padding: 8px;
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+
+  .tabulator .tabulator-header .tabulator-col {
+    padding: 12px 8px;
+    font-size: 11px;
   }
 }
