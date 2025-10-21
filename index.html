@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional stock dashboard for tracking NiftyInvest stocks with real-time data visualization.">
+  <meta name="keywords" content="stocks, dashboard, NiftyInvest, finance, trading">
+  <meta name="author" content="NiftyInvest Team">
   <title>NiftyInvest Stock Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
   <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <h1>NiftyInvest Stock Dashboard</h1>
+    <p>Track your favorite stocks in real-time</p>
+  </header>
+
   <!-- Fullscreen Loader -->
   <div id="page-loader" class="page-loader">
     <div class="spinner"></div>
+    <p style="color: white; padding-left:15px ;">Loading stock data...</p>
   </div>
 
-  <!-- Tabulator Table -->
-  <div id="stock-table" class="fade-in" style="display:none;"></div>
+  <!-- Main Content -->
+  <main>
+    <div id="stock-table" class="fade-in" style="display:none;"></div>
+  </main>
+
 
   <script src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
   <script src="script.js"></script>
