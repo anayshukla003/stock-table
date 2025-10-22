@@ -9,6 +9,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.background {
+  background: #bde5f7c2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+}
+
 header {
   text-align: center;
   padding: 30px 20px;
@@ -45,7 +54,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(55, 29, 208, 1.0);
+  background: rgba(55, 29, 208, 1.);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,6 +83,34 @@ main {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+#search-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 200px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-family: 'Inter', sans-serif;
+}
+#filter-button {
+  padding: 8px 12px;
+  border: 2px solid #5297dcff;
+  border-radius: 4px;
+  background: #74b3f3ff;
+  color: white;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+#filter-button:hover {
+  background: #178bc5ff;
+}
+
 
 .skeleton-loader {
   width: 100%;
@@ -271,46 +308,20 @@ main {
   align-items: center;
   margin-top: 20px;
   gap: 10px;
+  margin-bottom: 20px;
 }
 .pagination button {
   padding: 8px 12px;
   border: 1px solid #ddd;
-  background: white;
-  color: #333;
+  background: rgba(100, 159, 246, 0.88);
+  color: black;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-}
-
-#search-input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-right: 10px;
-  width: 200px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  font-family: 'Inter', sans-serif;
-}
-#filter-button {
-  padding: 8px 12px;
-  border: 2px solid #5297dcff;
-  border-radius: 4px;
-  background: #74b3f3ff;
-  color: white;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-#filter-button:hover {
-  background: #178bc5ff;
 }
 
 .pagination button:hover:not(:disabled) {
-  background: #f0f0f0;
+  background: #68a4c0ff;
 }
 
 .pagination button:disabled {

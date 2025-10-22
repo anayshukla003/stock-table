@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="background"> 
   <header>
     <h1>NiftyInvest Stock Dashboard</h1>
-    <p>Track your favorite stocks in real-time</p>
+   
   </header>
 
   <!-- Fullscreen Loader -->
@@ -22,13 +23,12 @@
     <p>Loading market data...</p>
   </div>
 
-  <!-- Search Section -->
-  <div class="search-bar" style="text-align:center; margin: 20px 0;">
-    <input type="text" id="search-input" placeholder="Search by Symbol or Company Name" style="padding:8px; width:250px;">
-    <button id="filter-button" style="padding:8px 16px; cursor:pointer;">Filter</button>
-  </div>
-
   <main>
+    <!-- Search Section -->
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search by Symbol or Company Name">
+      <button id="filter-button">Filter</button>
+    </div>
     <div id="stock-table" class="fade-in" style="display:none;">
       <table class="custom-table">
         <thead>
@@ -43,7 +43,6 @@
           </tr>
         </thead>
         <tbody id="table-body">
-          <!-- Table rows will be populated here -->
         </tbody>
       </table>
       <div class="pagination" id="pagination-container">
@@ -52,10 +51,8 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2023 NiftyInvest. All rights reserved.</p>
-  </footer>
-
+  </div>
   <script src="script.js"></script>
+
 </body>
 </html>
