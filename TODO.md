@@ -1,0 +1,2 @@
+- Remove page-loader and skeleton-loader divs from index.html
+- Simplify script.js: remove window load event and timeouts, remove skeleton loader creation, remove sorting functionality, simplify pagination to next/prev buttons, keep basic filtering and table rendering

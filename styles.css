@@ -39,14 +39,13 @@ main {
 
 
 
-/* Fullscreen Loader */
 .page-loader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(55, 29, 208, 1.0);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +75,6 @@ main {
   to { transform: rotate(360deg); }
 }
 
-/* Skeleton Loader */
 .skeleton-loader {
   width: 100%;
   max-width: 1400px;
@@ -130,149 +128,200 @@ main {
   }
 }
 
-/* Modern Tabulator Theme */
-.tabulator {
-  border: none;
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  background:#4a90e2;
+  background: white;
   border-radius: 12px;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
 }
 
-.tabulator .tabulator-header {
-  background: #4a90e2
+#stock-table {
+  overflow-x: auto;
+}
+
+
+
+.custom-table thead {
+  background: #6f89a7ff;
   color: #ffffff;
   font-weight: 600;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 1px solid #34495e;
 }
 
-.tabulator .tabulator-header .tabulator-col {
-  border-right: 1px solid rgba(255,255,255,0.1);
+.custom-table th {
   padding: 16px 12px;
+  text-align: left;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
   transition: background-color 0.3s ease;
+  position: relative;
 }
 
-.tabulator .tabulator-header .tabulator-col:hover {
+
+
+
+.custom-table th:hover {
   background-color: rgba(255,255,255,0.1);
 }
 
-.tabulator .tabulator-header .tabulator-col:last-child {
+.custom-table th.sortable::after {
+  content: " ▲";
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.custom-table th.sortable.asc,
+.custom-table th.sortable.desc {
+  background-color: #45484813; 
+}
+
+.custom-table th.sortable.asc::after {
+  opacity: 1;
+  font-weight: bold;
+}
+
+.custom-table th.sortable.desc::after {
+  content: " ▼";
+  opacity: 1;
+  font-weight: bold;
+}
+
+.custom-table th:last-child {
   border-right: none;
 }
 
-.tabulator .tabulator-row {
+.custom-table tbody tr {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid #f1f3f4;
 }
 
-.tabulator .tabulator-row:hover {
-  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+.custom-table tbody tr:hover {
+  background: #a0d4efff;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.tabulator .tabulator-row.tabulator-selected {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border-left: 4px solid #2196f3;
-}
-
-.tabulator-cell {
-  font-size: 14px;
+.custom-table td {
   padding: 14px 12px;
+  font-size: 14px;
   color: #2c3e50;
   border-right: 1px solid #f1f3f4;
   font-weight: 500;
 }
 
-.tabulator-cell:last-child {
+.custom-table td:last-child {
   border-right: none;
 }
 
-.tabulator-cell[data-field="symbol"] {
+.custom-table td:first-child {
   font-weight: 700;
   color: #1976d2;
 }
 
-.tabulator-cell[data-field="name"] {
+.custom-table td:nth-child(2) {
   font-weight: 600;
   color: #424242;
 }
 
-.tabulator-cell[data-field="ltp"] {
+.custom-table .ltp {
   font-weight: 700;
   font-size: 15px;
   color: #2e7d32;
 }
 
-.tabulator-cell[data-field="change"],
-.tabulator-cell[data-field="percentChange"] {
+.custom-table .positive {
+  color: #2e7d32;
   font-weight: 700;
   font-size: 13px;
-  position: relative;
 }
 
-.tabulator-cell.positive {
-  color: #2e7d32;
-}
-
-.tabulator-cell.positive::before {
+.custom-table .positive::before {
   content: "▲";
   margin-right: 4px;
   font-size: 12px;
 }
 
-.tabulator-cell.negative {
+.custom-table .negative {
   color: #d32f2f;
+  font-weight: 700;
+  font-size: 13px;
 }
 
-.tabulator-cell.negative::before {
+.custom-table .negative::before {
   content: "▼";
   margin-right: 4px;
   font-size: 12px;
 }
 
-.tabulator-cell[data-field="dayHigh"],
-.tabulator-cell[data-field="dayLow"] {
+.custom-table td:nth-child(6),
+.custom-table td:nth-child(7) {
   color: #616161;
   font-weight: 500;
 }
 
-/* Pagination */
-.tabulator .tabulator-footer {
-  background: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  padding: 12px;
-}
-
-.tabulator .tabulator-footer .tabulator-paginator {
+/* Pagination Styles */
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  gap: 10px;
 }
-
-.tabulator .tabulator-page {
-  margin: 0 4px;
+.pagination button {
   padding: 8px 12px;
-  border: 1px solid #dee2e6;
+  border: 1px solid #ddd;
   background: white;
-  color: #495057;
-  border-radius: 4px;
+  color: #333;
   cursor: pointer;
-  transition: all 0.2s ease;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.tabulator .tabulator-page.active {
-  background: #007bff;
+#search-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 200px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-family: 'Inter', sans-serif;
+}
+#filter-button {
+  padding: 8px 12px;
+  border: 2px solid #5297dcff;
+  border-radius: 4px;
+  background: #74b3f3ff;
   color: white;
-  border-color: #007bff;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+#filter-button:hover {
+  background: #178bc5ff;
 }
 
-.tabulator .tabulator-page:hover:not(.active) {
-  background: #e9ecef;
+.pagination button:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination .page-number.active {
+  background: #1976d2;
+  color: white;
+  border-color: #1976d2;
 }
 
 /* Responsive Design */
@@ -285,13 +334,28 @@ main {
     padding: 0 10px;
   }
 
-  .tabulator-cell {
+
+
+  .custom-table td {
     padding: 10px 8px;
+
     font-size: 12px;
   }
 
-  .tabulator .tabulator-header .tabulator-col {
+  .custom-table th {
     padding: 12px 8px;
     font-size: 11px;
+  }
+
+
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }

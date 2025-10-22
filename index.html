@@ -8,7 +8,6 @@
   <meta name="author" content="NiftyInvest Team">
   <title>NiftyInvest Stock Dashboard</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
-  <link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,15 +22,40 @@
     <p>Loading market data...</p>
   </div>
 
+  <!-- Search Section -->
+  <div class="search-bar" style="text-align:center; margin: 20px 0;">
+    <input type="text" id="search-input" placeholder="Search by Symbol or Company Name" style="padding:8px; width:250px;">
+    <button id="filter-button" style="padding:8px 16px; cursor:pointer;">Filter</button>
+  </div>
+
   <main>
-    <div id="stock-table" class="fade-in" style="display:none;"></div>
+    <div id="stock-table" class="fade-in" style="display:none;">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Company</th>
+            <th>LTP ₹</th>
+            <th>Change</th>
+            <th>% Change</th>
+            <th>Day High</th>
+            <th>Day Low</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Table rows will be populated here -->
+        </tbody>
+      </table>
+      <div class="pagination" id="pagination-container">
+        <!-- Pagination buttons will be populated here -->
+      </div>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2023 NiftyInvest. All rights reserved.</p>
   </footer>
 
-  <script src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
